@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_x_image_105"
+    android:orientation="vertical"
+    tools:context=".featureui.AppearanceFilterActivity">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/lyt_act_7"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_x_image_37" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imgPreview"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/_10sdp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_x_image_22" />
+
+            <FrameLayout
+                android:id="@+id/previewFrameHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:minHeight="@dimen/_180sdp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:fontFamily="@font/poibold"
+        android:text="Filter"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/btnFilter0"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:background="@drawable/img_x_image_4"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgOthers"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/img_x_image_32" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilter1"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:background="@drawable/img_x_image_5"
+            android:gravity="start"
+
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgOlive"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:padding="@dimen/_8sdp"
+
+                android:src="@drawable/img_x_image_33" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilter2"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:background="@drawable/img_x_image_5"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgLight"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:padding="@dimen/_8sdp"
+
+                android:src="@drawable/img_x_image_34" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFilter3"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+
+            android:layout_marginVertical="@dimen/_5sdp"
+
+            android:background="@drawable/img_x_image_5"
+            android:gravity="start"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgBrown"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/img_x_image_35" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_x_image_30" />
+</LinearLayout>

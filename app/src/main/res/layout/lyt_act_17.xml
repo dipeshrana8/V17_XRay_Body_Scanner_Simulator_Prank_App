@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_x_image_105"
+    android:orientation="vertical"
+    tools:context=".featureui.SkinToneInfoActivity">
+
+    <include
+        android:id="@+id/toolbarLayout"
+        layout="@layout/lyt_act_7"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:layout_marginVertical="@dimen/_15sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_x_image_76" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/btnAddImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/_80sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_x_image_22"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/RoundedImage" />
+
+                <ImageView
+                    android:id="@+id/imgDot"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_x_image_47" />
+
+            </FrameLayout>
+
+
+            <ImageView
+                android:id="@+id/imgTxtPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_x_image_48" />
+
+            <FrameLayout
+                android:id="@+id/previewFrameHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:minHeight="@dimen/_180sdp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_x_image_30"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/btnNextToGo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_x_image_68"
+        android:visibility="gone" />
+
+</LinearLayout>
