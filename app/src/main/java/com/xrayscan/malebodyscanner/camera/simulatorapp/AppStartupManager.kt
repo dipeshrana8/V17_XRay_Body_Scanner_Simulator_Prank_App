@@ -50,25 +50,8 @@ class AppStartupManager : AppLifecycleHandler() {
                 try {
                     val jsonString = remoteConfig.getString("comgetfreediamonds")
                     Log.d("RemoteConfig", "setupFirebaseRemoteConfig: " + jsonString)
+                    val jsonObject = JSONObject(jsonString)
 
-                    val jsonObject = JSONObject(
-                        "{\n" +
-                                "  \"native_show\": \"true\",\n" +
-                                "  \"privacy_policy_link\": \"https://www.google.com/\",\n" +
-                                "  \"onesignal_id\": \"f2f2f2f2f2\",\n" +
-                                "  \"interstial_onoff\": \"true\",\n" +
-                                "  \"daily_BannerImage\": [\n" +
-                                "    \"https://i0.wp.com/dktechhindi.net/wp-content/uploads/2024/12/Free-Fire-Free-Diamond.webp\",\n" +
-                                "    \"https://i0.wp.com/dktechhindi.net/wp-content/uploads/2024/12/Free-Fire-Free-Diamond.webp\",\n" +
-                                "    \"https://i0.wp.com/dktechhindi.net/wp-content/uploads/2024/12/Free-Fire-Free-Diamond.webp\",\n" +
-                                "    \"https://i0.wp.com/dktechhindi.net/wp-content/uploads/2024/12/Free-Fire-Free-Diamond.webp\"\n" +
-                                "  ],\n" +
-                                "  \"multiple_link\": [\n" +
-                                "    \"https://game.trazox.net/freeonlinegame/\",\n" +
-                                "    \"https://game.tramag.net/freeonlinegame/\"\n" +
-                                "  ]\n" +
-                                "}"
-                    )
 
                     AdPreferencesManager.setNative_show(
                         jsonObject.optBoolean(
