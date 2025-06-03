@@ -7,7 +7,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.xrayscan.malebodyscanner.camera.simulatorapp.R;
 import com.xrayscan.malebodyscanner.camera.simulatorapp.databinding.LytAct2Binding;
@@ -22,6 +24,8 @@ public class SelectAgeActivity extends MainBaseActivity {
     private LytAct2Binding lytAct2Binding;
     private AgeSelectorAdapter ageSelectorAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private final SnapHelper snapHelper = new LinearSnapHelper();
+    private int selectedIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,96 +33,80 @@ public class SelectAgeActivity extends MainBaseActivity {
         lytAct2Binding = LytAct2Binding.inflate(getLayoutInflater());
         setContentView(lytAct2Binding.getRoot());
 
-        for (int i = 10; i <= 70; i += 5) {
+        // Populate age list (10 to 100 with step 5)
+        for (int i = 10; i <= 100; i += 5) {
             ageList.add(i);
         }
 
+        // Setup RecyclerView
         linearLayoutManager = new LinearLayoutManager(this);
         lytAct2Binding.recyclerView.setLayoutManager(linearLayoutManager);
         ageSelectorAdapter = new AgeSelectorAdapter(ageList);
         lytAct2Binding.recyclerView.setAdapter(ageSelectorAdapter);
 
+        // Add vertical padding to center selected item
+        lytAct2Binding.recyclerView.setPadding(0, 300, 0, 300);
+        lytAct2Binding.recyclerView.setClipToPadding(false);
 
-        int selectedIndex = ageList.indexOf(25);
+        // Attach SnapHelper for centering
+        snapHelper.attachToRecyclerView(lytAct2Binding.recyclerView);
+
+        // Scroll to age 100 initially
+        selectedIndex = ageList.indexOf(100);
         ageSelectorAdapter.setSelectedIndex(selectedIndex);
         lytAct2Binding.recyclerView.scrollToPosition(selectedIndex);
 
+        // Listen for snap to detect center item
         lytAct2Binding.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    View centerView = getCenterView(linearLayoutManager);
+                    View centerView = snapHelper.findSnapView(linearLayoutManager); // ✅ fixed
                     if (centerView != null) {
-                        int centerPos = lytAct2Binding.recyclerView.getChildAdapterPosition(centerView);
-                        ageSelectorAdapter.setSelectedIndex(centerPos);
+                        int position = lytAct2Binding.recyclerView.getChildAdapterPosition(centerView);
+                        if (position != RecyclerView.NO_POSITION && selectedIndex != position) {
+                            selectedIndex = position;
+                            ageSelectorAdapter.setSelectedIndex(position);
+                        }
                     }
                 }
             }
         });
 
-
+        // Show image based on saved category
         SharedPreferences sharedPreferences1 = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         String name1 = sharedPreferences1.getString("category", "");
 
-
-        if (name1.equals("btnOldBody")) {
+        if ("btnOldBody".equals(name1)) {
             lytAct2Binding.imgOld.setImageResource(R.drawable.img_x_image_74);
         } else {
             lytAct2Binding.imgOld.setImageResource(R.drawable.img_x_image_87);
         }
 
-
+        // Confirm button navigation logic
         lytAct2Binding.btnConfirm.setOnClickListener(v -> {
-
-
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
             String name = sharedPreferences.getString("category", "");
 
-
-            if (name.equals("btnFullBodyScan")) {
-
-                Intent intent = new Intent(SelectAgeActivity.this, SkinTonePickerActivity.class);
-                startActivity(intent);
-            } else if (name.equals("btnOldBody")) {
-
-                Intent intent = new Intent(SelectAgeActivity.this, SkinTonePickerActivity.class);
-                startActivity(intent);
-            } else if (name.equals("btnBodyPartName")) {
-
-                Intent intent = new Intent(SelectAgeActivity.this, BodyExplorerActivity.class);
-                startActivity(intent);
-            } else if (name.equals("btnBodyFilter")) {
-
-                Intent intent = new Intent(SelectAgeActivity.this, SkinTonePickerActivity.class);
-                startActivity(intent);
-            } else if (name.equals("btnHumanSpecies")) {
-
-                Intent intent = new Intent(SelectAgeActivity.this, SpeciesInfoActivity.class);
-                startActivity(intent);
+            Intent intent;
+            switch (name) {
+                case "btnFullBodyScan":
+                case "btnOldBody":
+                case "btnBodyFilter":
+                    intent = new Intent(SelectAgeActivity.this, SkinTonePickerActivity.class);
+                    break;
+                case "btnBodyPartName":
+                    intent = new Intent(SelectAgeActivity.this, BodyExplorerActivity.class);
+                    break;
+                case "btnHumanSpecies":
+                    intent = new Intent(SelectAgeActivity.this, SpeciesInfoActivity.class);
+                    break;
+                default:
+                    return; // Unknown category, do nothing
             }
-
-
+            startActivity(intent);
         });
     }
-
-
-    private View getCenterView(LinearLayoutManager layoutManager) {
-        int center = lytAct2Binding.recyclerView.getHeight() / 2;
-        int minDistance = Integer.MAX_VALUE;
-        View closestView = null;
-
-        for (int i = 0; i < lytAct2Binding.recyclerView.getChildCount(); i++) {
-            View child = lytAct2Binding.recyclerView.getChildAt(i);
-            int childCenter = (child.getTop() + child.getBottom()) / 2;
-            int distance = Math.abs(childCenter - center);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestView = child;
-            }
-        }
-        return closestView;
-    }
-
 
     @Override
     public void onBackPressed() {
